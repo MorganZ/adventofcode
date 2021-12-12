@@ -1,5 +1,5 @@
 
-var fs = require('fs')
+const fs = require('fs')
 
 function fb(l, r, c) {
     if (((l[r] ?? [])[c] ?? 9) >= 9) return 0;
@@ -16,6 +16,6 @@ fs.readFile("./9/input.txt", "utf8", function (err, data) {
                 bs.push(fb(l, r, c));
             }
         }
-    var result = bs.sort((a, b) => b - a).splice(0, 3).reduce((p, c) => p * c, 1);
+    let result = bs.sort((a, b) => b - a).splice(0, 3).reduce((p, c) => p * c, 1);
     console.log(result);
 });
