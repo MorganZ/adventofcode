@@ -10,12 +10,14 @@ let graph = input.split("\n").map(e => e.split('-')).reduce((g, [from, to]) => {
 
 let paths = 0;
 
-(function findPaths(cave, visited) {
+function findPaths(cave, visited) {
     if (cave === cave.toLowerCase()) visited.push(cave);
     graph[cave].filter(c => !visited.includes(c)).forEach((c) => {
         if (c === 'end') paths += 1;
         else findPaths(c, [...visited]);
     });
-})('start', [])
+}
+
+findPaths('start', [])
 
 console.log(paths);
