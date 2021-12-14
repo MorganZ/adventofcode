@@ -9,5 +9,5 @@ for (let [axe, seam] of folds) {
     }
     break;
 }
-var ps = [... new Set(points.map(p => p.join(',')))].map(p => p.split(',').map(c => +c));
+let ps = [... new Set(points.map(p => p.join(',')))].map(p => p.split(',').map(c => +c));
 console.log(ps.length);

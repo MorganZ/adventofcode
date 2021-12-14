@@ -8,6 +8,6 @@ for (let [axe, seam] of folds)
             p[axe] = seam - (p[axe] - seam)
     }
 
-var display = Array(50).fill(null).map((e) => Array(50).fill(' '));
+let display = Array(50).fill(null).map((e) => Array(50).fill(' '));
 points.forEach((pt)=> display[pt[1]][pt[0]] = "x");
 display;
