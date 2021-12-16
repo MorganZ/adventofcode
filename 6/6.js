@@ -1,21 +1,13 @@
-var fs = require('fs')
+let fs = require('fs').readFileSync("./6/6.txt", "utf8").split(",").map(e => +e);
 
-fs.readFile("./6/6.txt", "utf8", function (err, data) {
-    let ps = data.split(",").map(e => parseInt(e));
-    const nbDays = 80;
-    let day = 0
-    do {
-        const nbFish = ps.length;
-        for (let p = 0; p < nbFish; p++) {
-            const age = ps[p]--;
-            if(age==0)
-            {
-                ps.push(8);
-                ps[p] = 6;
-            }
+for (let day = 0; day < 80; day++) {
+    let nbFish = fs.length;
+    for (let f = 0; f < nbFish; f++) {
+        const age = fs[f]--;
+        if (age == 0) {
+            fs.push(8);
+            fs[f] = 6;
         }
-        day++;
-        console.log(ps);
-    } while (day < nbDays)
-    console.log(ps.length);
-});
+    }
+}
+console.log(fs.length);

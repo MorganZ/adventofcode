@@ -1,14 +1,10 @@
-const fs = require('fs')
-
-fs.readFile("./9/input.txt", "utf8", function (err, data) {
-    let l = data.split("\n").map((e) => e.split('').map(n => parseInt(n)));
-    let sum = 0;
-    for (let r = 0; r < l.length; r++) {
-        for (let c = 0; c < l[r].length; c++) {
-            let adjacent = [(l[r - 1] ?? [])[c] ?? 9, (l[r + 1] ?? [])[c] ?? 9, (l[r] ?? [])[c - 1] ?? 9, (l[r] ?? [])[c + 1] ?? 9]
-            let isLower = adjacent.reduce((p, c) => p && c > l[r][c], true);
-            sum += isLower ? l[r][c] + 1 : 0;
-        }
+const m = require('fs').readFileSync("./9/input.txt", "utf8").split("\n").map((e) => e.split('').map(n => +n));
+let sum = 0;
+for (let r = 0; r < m.length; r++) {
+    for (let c = 0; c < m[r].length; c++) {
+        let adjacent = [(m[r - 1] ?? [])[c] ?? 9, (m[r + 1] ?? [])[c] ?? 9, (m[r] ?? [])[c - 1] ?? 9, (m[r] ?? [])[c + 1] ?? 9]
+        let isLower = adjacent.reduce((p, c) => p && c > m[r][c], true);
+        sum += isLower ? m[r][c] + 1 : 0;
     }
-    console.log(sum);
-});
+}
+console.log(sum);

@@ -1,24 +1,19 @@
-var fs = require('fs')
+let l = require('fs').readFileSync("./2/2.txt", "utf8").split("\n");
 
-fs.readFile("2.txt", "utf8", function (err, data) {
-    let l = data.split("\n");
-    let x=0;let d=0;
+let x = 0; let dist = 0;
 
-    for (let i = 0; i < l.length; i++) {
-        let value = parseInt( [...l[i]].reverse()[0]);
-        switch (l[i][0]) {
-            case 'd':
-                d+=value;
-                break;
-            case 'u':
-                d-=value;
-                break;
-            case 'f':
-                x+=value;
-                break;
-            default:
-                break;
-        }
+for (let i = 0; i < l.length; i++) {
+    let value = +[...l[i]].reverse()[0];
+    switch (l[i][0]) {
+        case 'd':
+            dist += value;
+            break;
+        case 'u':
+            dist -= value;
+            break;
+        case 'f':
+            x += value;
+            break;
     }
-    console.log(x*d)
-});
+}
+console.log(x * dist);

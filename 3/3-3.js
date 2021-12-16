@@ -1,6 +1,3 @@
-
-var fs = require('fs')
-
 function BuildBinaryTree(el, binaryString) {
     if (binaryString.length > 0) {
         if (el.count == 0) {
@@ -30,13 +27,11 @@ function findWeakDigit(el) {
     return digit + findWeakDigit(el[digit]);
 }
 
-fs.readFile("./3/3.txt", "utf8", function (err, data) {
-    const l = data.split("\n");
-    const root = { count: 0 }
-    for (let r = 0; r < l.length; r++) {
-        BuildBinaryTree(root, [...l[r]]);
-    }
-    let ogr = parseInt(findStrongDigit(root), 2);
-    let csr = parseInt(findWeakDigit(root), 2);
-    console.log(ogr * csr);
-});
+const l = require('fs').readFileSync("./3/3.txt", "utf8").split("\n");
+const root = { count: 0 }
+for (let r = 0; r < l.length; r++) {
+    BuildBinaryTree(root, [...l[r]]);
+}
+let ogr = parseInt(findStrongDigit(root), 2);
+let csr = parseInt(findWeakDigit(root), 2);
+console.log(ogr * csr);

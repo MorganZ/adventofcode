@@ -1,5 +1,4 @@
-const fs = require('fs');
-const input = fs.readFileSync("./12/input.txt", "utf8");
+const input = require('fs').readFileSync("./12/input.txt", "utf8");
 
 let graph = input.split("\n").map(e => e.split('-')).reduce((g, [from, to]) => {
     g[from] ? (g[from].push(to)) : (g[from] = [to]);

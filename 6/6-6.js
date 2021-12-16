@@ -1,32 +1,19 @@
-var fs = require('fs')
+var input = require('fs').readFileSync("./6/6.txt", "utf8").split(",").map(e => parseInt(e));
+let baseMap = new Map(Array(9).fill(0).map((_, index) => [index, 0]))
+var fishes = new Map(baseMap.entries());
 
-var baseMap = new Map(Array(9).fill(0).map((_,index) => [index, 0]))
-function initEmptyMap() {
-    return new Map(baseMap.entries());
+for (let age of input){
+    fishes.set(age, fishes.get(age) + 1)
 }
 
-fs.readFile("./6/6.txt", "utf8", function (err, data) {
-    let input = data.split(",").map(e => parseInt(e));
-
-    var ps = initEmptyMap();
-
-    for (let index = 0; index < input.length; index++) {
-        let age = input[index];
-        ps.set(age, ps.get(age) + 1)
+for (let day = 0; day < 256; day++) {
+    const tfs = new Map(baseMap.entries());
+    let newFish = fishes.get(0);
+    for (let age = 8; age >= 1; age--) {
+        tfs.set(age - 1, fishes.get(age));
     }
-
-    const nbDays = 256;
-    let day = 0;
-    do {
-        const fs = initEmptyMap();
-        let newFish = ps.get(0);
-        for (let age = 8; age >= 1; age--) {
-            fs.set(age - 1, ps.get(age));
-        }
-        fs.set(6, fs.get(6) + newFish);
-        fs.set(8, newFish);
-        day+=1;
-        ps = fs;
-    } while (day < nbDays)
-    console.log([...ps.values()].reduce((p, c) => p + c, 0));
-});
+    tfs.set(6, tfs.get(6) + newFish);
+    tfs.set(8, newFish);
+    fishes = tfs;
+} 
+console.log([...fishes.values()].reduce((p, c) => p + c, 0));
