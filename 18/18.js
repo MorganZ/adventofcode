@@ -62,7 +62,7 @@ let snailNumber = data[0];
 for (let i = 1; i < data.length; i++) {
     tree = [];
     parseSnailNumber(`[${snailNumber},${data[i]}]`, tree);
-    while (traverse(tree, explode) || traverse(tree, split)) { }
+    while (traverse(tree, explode) || traverse(tree, split));
     snailNumber = stringify(tree);
 }
 let m = magnetude(tree);

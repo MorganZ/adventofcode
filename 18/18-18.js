@@ -64,7 +64,7 @@ for (let [n1, n2] of combinaisons) {
     [[n1, n2], [n2, n1]].forEach(([a, b]) => {
         let tree = [];
         parseSnailNumber(`[${a},${b}]`, tree);
-        while (traverse(tree,explode) || traverse(tree,split)) { }
+        while (traverse(tree,explode) || traverse(tree,split));
         magnitudes.push(magnetude(tree));
     })
 }
