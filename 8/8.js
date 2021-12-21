@@ -1,6 +1,6 @@
 let l = require('fs').readFileSync("./8/input.txt", "utf8").split('\r\n').map(l => l.split('|')[1].split(' '));
-var sizes = [2, 3, 4, 7];
-var count = 0;
+let sizes = [2, 3, 4, 7];
+let count = 0;
 for (let i = 0; i < l.length; i++) {
     for (let a = 0; a < l[i].length; a++) {
         const size = l[i][a].length;

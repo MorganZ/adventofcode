@@ -4,8 +4,8 @@ let visited = new Map();
 let adjs = [[-1, 0], [0, -1], [0, 1], [1, 0]];
 visited.set(`${0}-${0}`, { c: 0 });
 let score = Number.MAX_SAFE_INTEGER;
-var end = lines.length * 5;//new
-var previous = 0;
+let end = lines.length * 5;//new
+let previous = 0;
 while (previous != score) {
     previous = score;
     for (let y = 0; y < end; y++) {
@@ -33,5 +33,6 @@ while (previous != score) {
         }
     }
     score = visited.get((end - 1) + '-' + (end - 1)).c;
+    console.log(score);
 }
 console.log(score);

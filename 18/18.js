@@ -57,10 +57,6 @@ function traverse(tree, action) {
     return false;
 }
 
-
-
-
-
 let tree = [];
 let snailNumber = data[0];
 for (let i = 1; i < data.length; i++) {

@@ -1,5 +1,5 @@
 let l = require('fs').readFileSync("./7/input.txt", "utf8").split(",").map(s => +s).sort((a, b) => a - b);
-const distanceCost = (n) => (n * (n + 1) / 2);//var f = (i)=> i == 1 ? 1 : f(i - 1) + i;
+const distanceCost = (n) => (n * (n + 1) / 2);//let f = (i)=> i == 1 ? 1 : f(i - 1) + i;
 
 let map = l.reduce((p, c) => (p[c] = (p[c] ?? 0) + 1, p), {});
 

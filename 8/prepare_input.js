@@ -31,6 +31,6 @@ let D0 = [[1, 1, 1],
 [0, 0, 1],
 [1, 0, 0]];
 
-var r = generateInputoutputs(D0);
+let r = generateInputoutputs(D0);
 
 console.log(r);

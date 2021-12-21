@@ -14,6 +14,7 @@ function parseSnailNumber(sn, tree, i = 0, reset = true) {
     (parseSnailNumber(sn, tree, (i * 2) + 2, false), pos++);
     if (reset) pos = -1
 }
+
 const stringify = (ba, i = 0) => ba[i] > -1 ? ba[i] : `[${stringify(ba, (i * 2) + 1)},${stringify(ba, (i * 2) + 2)}]`;
 
 function split(tree, i) {
@@ -58,7 +59,7 @@ function traverse(tree, action) {
 }
 
 let magnitudes = []
-var combinaisons = data.flatMap((v, i) => data.slice(i + 1).map(w => [v, w]));
+let combinaisons = data.flatMap((v, i) => data.slice(i + 1).map(w => [v, w]));
 for (let [n1, n2] of combinaisons) {
     [[n1, n2], [n2, n1]].forEach(([a, b]) => {
         let tree = [];

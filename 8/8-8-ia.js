@@ -52,7 +52,7 @@ let D0 =  [[1,1,1,0,1,1,1],
             [1,0,1,0,0,1,0],
             [1,1,1,1,1,1,1],
             [1,1,1,1,0,1,1]]
-var datas = generateInputoutputs(D0);
+let datas = generateInputoutputs(D0);
 
 
 let model;
