@@ -1,3 +1,4 @@
+// shadow578 - solution based on https://github.com/shadow578/AdventOfCode2021/blob/main/18_2/main.js
 let data = require('fs').readFileSync("./18/input.txt", "utf8").split('\n').map(n => JSON.parse(n));
 
 const magnetude = (ar) => ar > -1 ? ar : 3 * magnetude(ar[0]) + 2 * magnetude(ar[1]);
