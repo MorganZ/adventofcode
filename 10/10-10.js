@@ -1,11 +1,11 @@
-const l = require('fs').readFileSync("./10/input.txt", "utf8").split("\n").map((e) => e.split(''));
+const lines = require('fs').readFileSync("./10/input.txt", "utf8").split("\n").map((e) => e.split(''));
 let points = { "(": 1, "[": 2, "{": 3, "<": 4 };
 let list = [];
-for (let r = 0; r < l.length; r++) {
+for(let line of lines){
     let stack = []
     let pass = false;
-    for (let c = 0; c < l[r].length; c++) {
-        const current = l[r][c];
+    for (let c = 0; c < line.length; c++) {
+        const current = line[c];
         if (')]}>'.includes(current)) {
             if (!"()[]{}<>".includes(stack.pop() + current)) {
                 pass = true;
