@@ -1,23 +1,26 @@
-let r = /x=(-?\d+)\.\.(-?\d+)\,y=(-?\d+)\.\.(-?\d+)\,z=(-?\d+)\.\.(-?\d+)/g;
 let data = require('fs').readFileSync('./22/input.txt', 'utf-8').split('\n');
+let isIntersecting = (a, b) => a.map(([min, max], i) => min > b[i][1] || max < b[i][0]).some(a => !a);
+let intersect = (a, b) => a.map(([min, max], i) => [Math.max(min, b[i][0]), Math.min(max, b[i][1])])
 
-let m = new Set();
-
-//let clam = (a) => a < -50 ? -51 : a > 50 ? 51 : a;
-
-let rr = data.forEach(d => {
+let boxes = data.map(d => {
     let on = d.startsWith('on');
-    let [x0, x1, y0, y1, z0, z1] = [...d.matchAll(r)][0].slice(1).map(e => +e);
+    let bBox = d.split(',').map(l => [...l.matchAll(/(-?\d+)/g)].map(e => +e[0]));
+    return { on, bBox }
+});
 
-    console.log([x0, x1, y0, y1, z0, z1]);
 
-    for (let x = x0; x <= x1 ; x++) {
-        for (let y = y0; y <= y1 ; y++) {
-            for (let z = z0; z <= z1 ; z++) {
-                on ? m.add(x + "," + y + "," + z) : m.delete(x + "," + y + "," + z);
-            }
-        }
+let newBoxes = [];
+
+boxes.forEach(b => {
+    let _boxes = [];
+    if (b.on) _boxes.push(b);
+    for (let bb of newBoxes) {
+        if (isIntersecting(b.bBox, bb.bBox))
+            _boxes.push({ on: !bb.on, bBox: intersect(b.bBox, bb.bBox) });
     }
-})
-console.log([...m.values()].filter(a => a).length);
 
+    newBoxes = newBoxes.concat(_boxes);
+    console.log(newBoxes.length)
+})
+
+console.log(newBoxes);
