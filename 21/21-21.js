@@ -1,13 +1,9 @@
-//Not working solution for now 
-//157253621231420
 
-let pid = 1;
 let start = [new Map([['1,0', 1]]), new Map([['6,0', 1]])];
 //let possibleRolls = Object.entries({ 3: 1n, 4: 3n, 5: 6n, 6: 7n, 7: 6n, 8: 3n, 9: 1n })
 //let possibleRolls = [["3",1n],["4",3n],["5",6n],["6",7n],["7",6n],["8",3n],["9",1n]]
 let possibleRolls = [[3, 1], [4, 3], [5, 6], [6, 7], [7, 6], [8, 3], [9, 1]]
-let pc = [0, 0];
-let total_prec = 0;
+let pid = 1, pc = [0, 0], total_prec = 0;
 while (start[0].size > 0 && start[1].size > 0) {
     pid ^= 1;
     let total_universe = 0;
