@@ -4,8 +4,6 @@ const inputs = require('fs').readFileSync('./3/input.txt', 'utf8').split('\r\n')
 const inputsBy3 = [];
 inputs.reduce((p, c) => (p.push(c), p.length == 3 ? (inputsBy3.push(p), p = []) : null, p), []);
 
-
-
 let score = inputsBy3.map(c=>c.reduce((p, c) => p&c))
 
 console.log(score);

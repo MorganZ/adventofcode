@@ -38,13 +38,11 @@ const AnalyseConsoleOutput = (currentDir, input) => {
 AnalyseConsoleOutput(root, input);
 
 // 1
-const sumDirLowerThan100000 = dir => 
-  dir.children.reduce((p, child) => p + (child.dir ? sumDirLowerThan100000(child) : 0), dir.size <= 100000 ? dir.size : 0);
+const sumDirLowerThan100000 = dir => dir.children.reduce((p, child) => p + (child.dir ? sumDirLowerThan100000(child) : 0), dir.size <= 100000 ? dir.size : 0);
 console.log(sumDirLowerThan100000(root.children[0]));
 
 // 2
-const space = Math.abs(70000000 - 30000000 - root.children[0].size);
-const findAll = dir => 
-  dir.children.reduce((p, child) => (child.dir ? p.push(...findAll(child)) : p, p), dir.size > space ? [dir] : []);
+const space = Math.abs(40000000 - root.children[0].size);
+const findAll = dir =>   dir.children.reduce((p, child) => (child.dir ? p.push(...findAll(child)) : p, p), dir.size > space ? [dir] : []);
 
 console.log(findAll(root.children[0]).sort((a, b) => a.size - b.size)[0].size);
