@@ -10,8 +10,9 @@ const moves = require('fs').readFileSync('./9/input.txt', 'utf-8').split('\n').m
             head.x += direction.x, head.y += direction.y;
             for (let index = 1; index < rope.length; index++) {
                 const head = rope[index - 1], tail = rope[index];
-                if (Math.abs(head.x - tail.x) > 1 || Math.abs(head.y - tail.y) > 1) {
-                    tail.x += Math.sign(head.x - tail.x), tail.y += Math.sign(head.y - tail.y);
+                let x = head.x - tail.x, y = head.y - tail.y;
+                if (Math.abs(x) > 1 || Math.abs(y) > 1) {
+                    tail.x += Math.sign(x), tail.y += Math.sign(y);
                     if (index === rope.length - 1) visited.add(`${tail.x},${tail.y}`);
                 }
                 else break;
