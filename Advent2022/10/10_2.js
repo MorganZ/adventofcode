@@ -1,12 +1,11 @@
 const program = require('fs').readFileSync('./10/input.txt', 'utf-8').split("\r\n");
-const CPU = { X: 1, cycle: [] }
+let X = 1, cycles = [];
 program.forEach(instruction => {
-    CPU.cycle.push(CPU.X);
+    cycles.push(X);
     if ("addx" === instruction.slice(0, 4))
-        CPU.cycle.push(CPU.X);
-        CPU.X += +instruction.slice(5);
+        cycles.push(X);
+    X += +instruction.slice(5);
 });
 
-var CRTBeam = CPU.cycle.map((cx, ci) => (cx = (cx + 1) % 40, (cx === (ci) % 40 || cx === (ci + 1) % 40 || cx === (ci + 2) % 40) ? "x" : "."));
-var CRTLines = CRTBeam.reduce((crt, pixel, beamIndex) => (crt[Math.floor(beamIndex / 40)].push(pixel), crt), [[], [], [], [], [], []]);
+var CRTLines = cycles.reduce((crt, cx, ci) => (crt[Math.floor(ci / 40)].push(Math.abs(cx - ci % 40) <= 1 ? "#" : "."), crt), [[], [], [], [], [], []]);
 console.log(CRTLines.map(crtLines => crtLines.join(" ")).join("\r\n"));
