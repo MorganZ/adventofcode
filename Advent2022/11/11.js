@@ -3,7 +3,6 @@ const input = require('fs').readFileSync('./11/input.txt', 'utf-8');
 
 const monkeys = input.split("\n\n").map(c => c.split("\n")).map(lines =>
 ({
-    id: +lines[0].match(/(\d+)/)[1],
     items: lines[1].match(/\d+/g).map(Number),
     op: ((op) => (old) => eval(op.replace(/old/g, old)))(lines[2].match(/= (.*)/)[1]),
     test: +lines[3].match(/(\d+)/)[1],
