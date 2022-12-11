@@ -21,12 +21,10 @@ for (const [part, rounds] of [[1, 20], [2, 10000]]) {
                     case 1: worryLevel = parseInt(op(worryLevel) / 3); break;
                     case 2: worryLevel = op(worryLevel) % divisor; break;
                 }
-                let divisible = worryLevel % test === 0;
-                monkeys[to[+divisible]].items.push(worryLevel);
+                monkeys[to[+!(worryLevel % test)]].items.push(worryLevel);
             }
             monkeys[id].inspected += items.length;
             monkeys[id].items = [];
         }
-    const score = Object.values(monkeys).sort((a, b) => b.inspected - a.inspected).slice(0, 2).reduce((p, c) => p * c.inspected, 1);
-    console.log(score);
+    console.log(Object.values(monkeys).sort((a, b) => b.inspected - a.inspected).slice(0, 2).reduce((p, c) => p * c.inspected, 1));
 };
