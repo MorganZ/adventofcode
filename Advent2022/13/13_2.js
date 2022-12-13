@@ -1,6 +1,4 @@
-let signals = require('fs').readFileSync('./13/input.txt', 'utf-8').split("\n").filter(s => s.length > 0).map(s => JSON.parse(s));;
-signals.push(...dividerPacket = [[[2]], [[6]]]);
-
+let signals = require('fs').readFileSync('./13/input.txt', 'utf-8').split("\n").filter(s => s.length).map(JSON.parse).concat(dividerPacket = [[[2]], [[6]]]);
 const compareSignal = (s1, s2) => {
     if (Number.isInteger(s1) && Number.isInteger(s2)) return Math.sign(s1 - s2);
     if (Array.isArray(s1) && Array.isArray(s2)) {
@@ -10,8 +8,7 @@ const compareSignal = (s1, s2) => {
         }
         return Math.sign(s1.length - s2.length);
     }
-    if (Number.isInteger(s1)) return compareSignal([s1], s2);
-    if (Number.isInteger(s2)) return compareSignal(s1, [s2]);
+    return Number.isInteger(s1) ? compareSignal([s1], s2) : compareSignal(s1, [s2]);
 }
 let signalsOrdered = signals.sort(compareSignal);
 let result = dividerPacket.map(d => signalsOrdered.findIndex(s => s == d) + 1).reduce((a, b) => a * b);
