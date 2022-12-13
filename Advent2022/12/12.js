@@ -14,7 +14,7 @@ while (positions.length > 0) {
     for (let current of positions) {
         mapDebug[current.y][current.x] = 1;
         for (let neighbor of getPossibleNeighbors(current)) {
-            if (neighbor.x === end.x && neighbor.y === end.y) throw "found it " + dist; // part 1
+            if (neighbor.x === end.x && neighbor.y === end.y) throw "found it " + dist; 
             if (visited.has(neighbor.key)) continue;
             nextPositions.push(neighbor);
             visited.add(neighbor.key);
