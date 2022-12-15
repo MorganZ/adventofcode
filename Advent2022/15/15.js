@@ -10,7 +10,7 @@ const sensorData = require('fs').readFileSync('./15/input.txt', 'utf-8').split('
     })
 
 
-const line = 2000000;
+const line = 10;
 const possiblePoints = new Set();
 const possibleBeacons = new Set();
 sensorData.forEach(([sPos, bPos]) => {
@@ -25,6 +25,7 @@ sensorData.forEach(([sPos, bPos]) => {
         possiblePoints.add(`${sPos[0]+i}`);
     }
 });
+
 
 possibleBeacons.forEach(beacon => {
     possiblePoints.delete(beacon);
