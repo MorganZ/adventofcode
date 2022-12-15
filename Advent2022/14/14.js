@@ -10,7 +10,7 @@ rockWalls.forEach(([[sx, sy], [ex, ey]]) => {
     }
 });
 
-for (step = 0; [y, x] = [500, 0] ;  step++) {
+for (step = 0; [y, x] = [500, 0]; step++) {
     if (theMap[`${y},${x}`]) break;
     while (true) {
         if (x + 1 == xmax) { theMap[`${y},${x}`] = 'O'; break; }
